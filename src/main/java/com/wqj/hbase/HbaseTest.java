@@ -46,7 +46,7 @@ public class HbaseTest {
      * 修改表
      */
     public void updateTable() throws SQLException {
-        String str = "upsert into STUDENT(PK,'cf1'.'name','cf1'.'age','cf2'.'dept') values('111','zhansgan2','21','13')";
+        String str = "upsert into STUDENT(PK,\"cf1\".\"name\",\"cf1\".\"age\",\"cf2\".\"dept\") values('112','zhansgan2','1','3')";
         Statement statement = conn.createStatement();
         statement.execute(str);
         conn.commit();
