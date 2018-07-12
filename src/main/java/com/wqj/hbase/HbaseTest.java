@@ -20,7 +20,7 @@ public class HbaseTest {
         HbaseTest hbaseTest = new HbaseTest();
 //        hbaseTest.createTable();
         hbaseTest.updateTable();
-      hbaseTest.getTable();
+        hbaseTest.getTable();
     }
 
     /**
@@ -28,7 +28,7 @@ public class HbaseTest {
      */
     public void createTable() throws SQLException {
 
-        String sql = "create table student('cf1'.'name' varchar null,'cf1'.'age' int null,'cf2'.'dept' varchar null)";
+        String sql = "create table people( Pk VARCHAR PRIMARY KEY,name varchar null,age INTEGER null,dept varchar null)";
         Statement statement = conn.createStatement();
         statement.execute(sql);
         statement.close();
@@ -46,7 +46,8 @@ public class HbaseTest {
      * 修改表
      */
     public void updateTable() throws SQLException {
-        String str = "upsert into STUDENT(PK,\"cf1\".\"name\",\"cf1\".\"age\",\"cf2\".\"dept\") values('112','zhansgan2','1','3')";
+//        String str = "upsert into STUDENT(PK,\"cf1\".\"name\",\"cf1\".\"age\",\"cf2\".\"dept\") values('112','zhansgan2','1','3')";
+        String str = "upsert into people(PK,name,age,dept) values('112','zhansgan2',1,'3')";
         Statement statement = conn.createStatement();
         statement.execute(str);
         conn.commit();
@@ -60,7 +61,7 @@ public class HbaseTest {
         String sql = "select * from student";
         Statement statement = conn.createStatement();
         ResultSet resultSet = statement.executeQuery(sql);
-        while (resultSet.next()){
+        while (resultSet.next()) {
             System.out.println(resultSet.getString("name"));
         }
         statement.close();
